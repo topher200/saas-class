@@ -5,11 +5,12 @@ class Class
     attr_history = attr_name+"_history"
     attr_reader attr_history # create bar_history getter
     class_eval %Q{
-      def initialize
-        @#{attr_history} = [nil]
-      end
       def #{attr_name}= (value)
-        @#{attr_history} += [value]
+        # TODO(topher): there has to be a better place to initialze this
+        if not @#{attr_history}
+          @#{attr_history} = [nil]
+        end
+        @#{attr_history} << value
       end
     }
   end
