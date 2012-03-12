@@ -1,3 +1,4 @@
+#### Part A
 class Dollar < Numeric
   def initialize(amount)
     @amount = amount
@@ -27,3 +28,21 @@ class Numeric
     end
   end
 end
+#### end Part A
+
+#### Part B
+class String
+  def palindrome?
+    trimmed_string = self.gsub(/\W/, '').downcase
+    return trimmed_string == trimmed_string.reverse
+  end
+end
+#### end Part B
+
+### Part C
+module Enumerable
+  def palindrome?
+    self == self.reverse
+  end
+end
+### end Part C
