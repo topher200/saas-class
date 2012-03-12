@@ -1,7 +1,12 @@
 class Dollar < Numeric
+  def initialize(amount)
+    @amount = amount
+  end
+  
   def in(currency)
-    if @@currencies.has_key?(currency)
-      self * @@currencies[currency]
+    singular_currency = singular(currency)
+    if @@currencies.has_key?(singular_currency)
+      @amount / @@currencies[singular_currency]
     end
   end
 end
@@ -16,7 +21,7 @@ class Numeric
   def method_missing(method_id)
     singular_currency = singular(method_id)
     if @@currencies.has_key?(singular_currency)
-      Dollar(self * @@currencies[singular_currency])
+      Dollar.new(self * @@currencies[singular_currency])
     else
       super
     end
