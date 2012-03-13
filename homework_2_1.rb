@@ -42,7 +42,7 @@ end
 ### Part C
 module Enumerable
   def palindrome?
-    self == self.reverse
+    return self.to_a == self.to_a.reverse
   end
 end
 ### end Part C
